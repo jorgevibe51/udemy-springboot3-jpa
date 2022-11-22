@@ -4,6 +4,7 @@
  */
 package com.educandoweb.curso_spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class User implements Serializable{
     private String password;
     
     //associacao instanciada
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
     
