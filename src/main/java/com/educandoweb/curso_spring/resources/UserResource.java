@@ -33,6 +33,7 @@ public class UserResource {
         return ResponseEntity.ok().body(list);
     }
     
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(service.findById(id));
