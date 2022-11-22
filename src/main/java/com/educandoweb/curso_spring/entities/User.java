@@ -4,6 +4,7 @@
  */
 package com.educandoweb.curso_spring.entities;
 
+import com.educandoweb.curso_spring.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class User implements Serializable{
     public List<Order> getOrders() {
         return orders;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
