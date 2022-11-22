@@ -4,9 +4,11 @@
  */
 package com.educandoweb.curso_spring.config;
 
+import com.educandoweb.curso_spring.entities.Category;
 import com.educandoweb.curso_spring.entities.Order;
 import com.educandoweb.curso_spring.entities.User;
 import com.educandoweb.curso_spring.entities.enums.OrderStatus;
+import com.educandoweb.curso_spring.repositories.CategoryRepository;
 import com.educandoweb.curso_spring.repositories.OrderRepository;
 import com.educandoweb.curso_spring.repositories.UserRepository;
 import java.time.Instant;
@@ -25,15 +27,27 @@ public class TestConfig implements CommandLineRunner {
     
     private UserRepository userRepository;
     private OrderRepository orderRepository;
+    private CategoryRepository categoryRepository;
 
-    public TestConfig(UserRepository repository, OrderRepository orderRepository) {
+    public TestConfig(UserRepository repository, 
+                      OrderRepository orderRepository,
+                      CategoryRepository categoryRepository) {
         //construtor que substitui o @autowired por recomendação
         this.userRepository=repository;
         this.orderRepository=orderRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        
+        Category cat1 = new Category(null, "Eletronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+        
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        
+        
         User u1 = new User(null, "Maria Browwn", "maria@gmail.com", "48 999486161", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "48 999485454", "123456" );
         
