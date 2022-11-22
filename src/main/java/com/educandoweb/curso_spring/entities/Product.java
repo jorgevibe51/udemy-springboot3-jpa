@@ -20,23 +20,29 @@ import javax.persistence.Transient;
  * @author Jorge
  */
 @Entity
-@Table(name ="tbl_category")
-public class Category implements Serializable {
+@Table(name = "tbl_product")
+public class Product implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private String imgUrl;
+    private Double price;
     
     @Transient
-    private Set<Product> products = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
-    public Category() {
+    public Product() {
     }
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.imgUrl = imgUrl;
+        this.price = price;
     }
 
     public Long getId() {
@@ -55,14 +61,38 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public String getDescription() {
+        return description;
     }
-    
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -77,8 +107,7 @@ public class Category implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Category other = (Category) obj;
+        final Product other = (Product) obj;
         return Objects.equals(this.id, other.id);
     }
-    
 }
