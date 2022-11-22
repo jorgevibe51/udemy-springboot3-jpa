@@ -25,3 +25,6 @@ public class UserResource {
     }
     
 }
+
+
+//continua na aula 300
